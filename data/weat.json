@@ -1,0 +1,14 @@
+{
+    "M":["male","man","boy","brother","he","him","his","son","father","uncle","grandfather"],
+    "F": ["female","woman","girl","sister","she","her","hers","daughter","mother","aunt","grandmother"],
+    "B1_X": ["executive","management","professional","corporation","salary","office","business","career"],
+    "B2_X": ["math","algebra","geometry","calculus","equations","computation","numbers","addition"],
+    "B3_X": ["science","technology","physics","chemistry","Einstein","NASA","experiment","astronomy"],
+    "B4_X": ["precocious","resourceful","inquisitive","genius","inventive","astute","adaptable","reflective","discerning","intuitive","inquiring","judicious","analytical","apt","venerable","imaginative","shrewd","thoughtful","wise","smart","ingenious","clever","brilliant","logical","intelligent"],
+    "B5_X": ["power","strong","confident","dominant","potent","command","assert","loud","bold","succeed","triumph","leader"," shout"," dynamic"," winner"],
+    "B1_Y": ["home","parents","children","family","cousins","marriage","wedding","relatives"],
+    "B2_Y": ["poetry","art","Shakespeare","dance","literature","novel","symphony","drama"],
+    "B3_Y": ["poetry","art","Shakespeare","dance","literature","novel","symphony","drama"],
+    "B4_Y": ["alluring","voluptuous","blushing","homely","plump","sensual","gorgeous","slim","bald","athletic","fashionable","stout","ugly","muscular","slender","feeble","handsome","healthy","attractive","fat","weak","thin","pretty","beautiful","strong"],
+    "B5_Y": ["weak","surrender","timid","vulnerable","weakness","wispy","withdraw","yield","failure","shy","follow","lose","fragile","afraid","loser"]
+}
