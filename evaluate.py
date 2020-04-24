@@ -31,7 +31,6 @@ def get_word_vectors(embed, words, labels=None):
     else:
         return X_words, X_emb, Y_emb
 
-
 def clustering(embed, save_dir, embed_name):
     data = pd.read_csv("data/stereotype_list.csv")
     X = data["male"].values.tolist() + data["female"].values.tolist()
@@ -144,14 +143,16 @@ def weat(embed, save_dir, embed_name):
         np.random.seed(1)
         U = np.vstack([X, Y])
         s_hat = []
-        for i in range(50):
+        for i in range(10000):
             idx = np.random.permutation(len(U))
             X_hat = U[idx[:len(X)]]
             Y_hat = U[idx[len(X):]]
             si = S(X_hat, Y_hat, M, F)
             s_hat.append(si)
-        t, pvalue = ttest_1samp(s_hat, s0)
-        pvalue = pvalue / 2
+
+        s_hat = np.array(s_hat)
+
+        pvalue = (s_hat > s0).mean()
         return pvalue
 
     with open("data/weat.json") as f:
@@ -164,13 +165,11 @@ def weat(embed, save_dir, embed_name):
     M = vectors["M"]
     F = vectors["F"]
 
-    pvalues = []
-    for b in ["B1", "B2", "B3", "B4", "B5"]:
-        X = vectors[b + "_X"]
-        Y = vectors[b + "_Y"]
-        pvalues.append(test(X, Y, M, F))
+    X = vectors["B1_X"]
+    Y = vectors["B1_Y"]
+    pvalues = test(X, Y, M, F)
 
-    score = pd.DataFrame([pvalues], columns=["B1", "B2", "B3", "B4", "B5"])
+    score = pd.DataFrame([pvalues], columns=["score"])
     score.to_csv(makedir([save_dir, "weat"], "{}_score.csv".format(embed_name)), index=False)
     return pvalues
 
@@ -194,6 +193,8 @@ def analogy(embed, save_dir, embed_name):
         max_score = -100
         for i, word_pair in enumerate(l):
             word_pair = word_pair.split(':')
+            if word_pair[0] not in embed or word_pair[1] not in embed:
+                continue
             pre_v = embed[word_pair[0]] - embed[word_pair[1]]
             score = cosine(gender_v, pre_v)
             if score > max_score:
@@ -221,14 +222,3 @@ def analogy(embed, save_dir, embed_name):
     score.to_csv(makedir([save_dir, "analogy"], "{}_score.csv".format(embed_name)), index=False)
 
     return definition_acc, stereotype_acc, none_acc
-
-
-
-
-
-
-
-
-
-
-

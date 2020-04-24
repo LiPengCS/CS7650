@@ -9,7 +9,7 @@ def evaluate_bias(embed, embed_name):
     # projection
     projection(embed, save_dir, embed_name)
 
-    # clustering
+    # # clustering
     clustering(embed, save_dir, embed_name)
 
     # weat
@@ -18,14 +18,23 @@ def evaluate_bias(embed, embed_name):
     # gender classification
     gender_classification(embed, "svc", save_dir, embed_name)
 
-    # analogy
+    # # analogy
     analogy(embed, save_dir, embed_name)
 
-# evaluate commonly used embeddings
-glove_common = load_embedding("glove_common")
-word2vec_common = load_embedding("word2vec_common")
-fasttext_common = load_embedding("fasttext_common")
+def evaluate(embed_name):
+    print("evaluate", embed_name)
+    embed = load_embedding(embed_name)
+    evaluate_bias(embed, embed_name)
 
-evaluate_bias(glove_common, "glove_common")
-evaluate_bias(word2vec_common, "word2vec_common")
-evaluate_bias(fasttext_common, "fasttext_common")
+evaluate("glove-wiki")
+evaluate("word2vec-google")
+evaluate("fasttext-crawl")
+evaluate("fasttext-wiki-hard-debiased")
+evaluate("fasttext-wiki")
+evaluate("glove-crawl")
+evaluate("glove-wiki-hard-debiased")
+evaluate("glove-wiki")
+evaluate("word2vec-hard-debiased")
+evaluate("gn-glove")
+evaluate("gp-glove")
+evaluate("word2vec-wiki")
