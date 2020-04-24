@@ -2,6 +2,6 @@ numpy
 pandas
 gensim
 pickle
-scikitlearn
+scikit-learn
 matplotlib
 scipy
